@@ -57,5 +57,4 @@ function start_container {
   --name $CONTAINER $IMAGE
 }
 
-help_text
 check_container_exist
