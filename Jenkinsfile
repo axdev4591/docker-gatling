@@ -16,8 +16,8 @@ pipeline {
         stage('Buil Docker Image') {
           steps{
             script {
-             sh "chmod +x build_image"
-             sh "./build_image -i ${IMAGE} -c ${CONTAINER}."
+             sh "chmod +x build_image.sh"
+             sh "./build_image.sh -i ${IMAGE} -c ${CONTAINER}."
               //dockerImage = docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"
             }
           }
@@ -27,8 +27,8 @@ pipeline {
         stage('Run Docker Container') {
              steps{
                  script {
-                  sh "chmod +x run_container"
-                  sh "./run_container -c ${CONTAINER}."
+                  sh "chmod +x run_container.sh"
+                  sh "./run_container.sh -c ${CONTAINER}."
                  }
              }
         }
@@ -38,7 +38,7 @@ pipeline {
              steps{
                  script {
                   sh "chmod +x runTest"
-                  sh "./runTest -i ${IMAGE} -c ${CONTAINER}."
+                  sh "./runTest.sh -i ${IMAGE} -c ${CONTAINER}."
                  }
              }
         }
