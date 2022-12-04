@@ -50,3 +50,6 @@ function build_image {
     echo -e "\n*** Finished building the image ***\n"
 
 }
+
+help_text
+check_image_exist

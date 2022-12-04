@@ -31,10 +31,6 @@ while [ $# -gt 0 ]; do
     esac
 done
 
-function delete_old_reports {
-rm -rf $WORKSPACE/results/
-docker exec $CONTAINER rm -rf /opt/gatling/results/*
-}
 
 function check_container_exist {
 
@@ -50,7 +46,7 @@ function check_container_exist {
         docker start ${CONTAINER}
     else
         echo -e "\n*** Running the container ***\n"
-        start_container_with_Gatling
+        start_container
     fi
 }
 
@@ -61,6 +57,5 @@ function start_container {
   --name $CONTAINER $IMAGE
 }
 
-
+help_text
 check_container_exist
-start_container
