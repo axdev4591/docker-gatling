@@ -1,13 +1,6 @@
 #!/bin/bash
 
-function help_text {
-    cat <<EOF
-    Usage: $0 [ -i|--image IMAGE ] [ -c|--container CONTAINER ] [-h]
-        IMAGE         (required) gatling docker image name.
-        CONTAINER   (required) gatling container name.
-EOF
-    exit 1
-}
+
 
 while [ $# -gt 0 ]; do
     arg=$1
