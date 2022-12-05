@@ -3,7 +3,7 @@ pipeline {
     environment {
         AWS_ACCOUNT_ID="129676970375"
         AWS_DEFAULT_REGION="us-east-1"
-        IMAGE="gatling-image"
+        IMAGE="gatling"
         CONTAINER="gatling-runner"
         AWS_REPORT_BUCKET="gatlingbkt"
         PROFILE="EcrRegistryFullAccessEC2"
