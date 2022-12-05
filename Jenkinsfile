@@ -19,7 +19,7 @@ pipeline {
              //sh "chmod +x build_image.sh"
              //sh "./build_image.sh -i ${IMAGE_REPO} -c ${TAG}."
               //dockerImage = docker.build "${IMAGE_REPO}:${TAG}"
-              docker build -t ${IMAGE_REPO} .
+              sh "docker build -t ${IMAGE_REPO} ."
             }
           }
         }
