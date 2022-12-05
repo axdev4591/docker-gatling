@@ -3,7 +3,7 @@
 # Documentation: http://gatling.io/docs/2.0.0/
 # Cheat sheet: http://gatling.io/#/cheat-sheet/2.0.0/
 
-FROM openjdk:8-jdk-alpine
+FROM denvazh/gatling:latest
 
 LABEL maintainer = "devops4591@gmail.com"
 
@@ -11,20 +11,11 @@ LABEL maintainer = "devops4591@gmail.com"
 WORKDIR /opt
 
 # gating version
-ENV GATLING_VERSION 2.2.5
+#ENV GATLING_VERSION 2.2.5
 
 # create directory for gatling install
 RUN mkdir -p gatling
 
-# install gatling
-RUN apk add --update wget bash && \
-  mkdir -p /tmp/downloads && \
-  wget -q -O /tmp/downloads/gatling-$GATLING_VERSION.zip \
-  https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcharts/$GATLING_VERSION/gatling-charts-highcharts-$GATLING_VERSION-bundle.zip && \
-  mkdir -p /tmp/archive && cd /tmp/archive && \
-  unzip /tmp/downloads/gatling-$GATLING_VERSION.zip && \
-  mv /tmp/archive/gatling-charts-highcharts-$GATLING_VERSION/* /opt/gatling/ && \
-  rm -rf /tmp/*
 
 # change context to gatling directory
 WORKDIR  /opt/gatling
