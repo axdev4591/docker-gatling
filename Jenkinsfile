@@ -18,18 +18,8 @@ pipeline {
             script {
              //sh "chmod +x build_image.sh"
              //sh "./build_image.sh -i ${IMAGE_REPO} -c ${TAG}."
-              //dockerImage = docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"
               dockerImage = docker.build "${IMAGE_REPO}:${TAG}"
-             /* echo -e "\n*** Checking if docker image exists... ***\n"
-
-              if (docker images | grep -w ${IMAGE}) {
-                    echo 'Image already exists. We can just run container'
-                } else {                
-                    echo -e "\n*** Building the image ***\n"
-                    dockerImage = docker.build "${IMAGE_REPO}:${TAG}"
-                    echo -e "\n*** Finished building the image: ${IMAGE} ***\n"
-                }
-            }*/
+            }
           }
         }
 
@@ -38,7 +28,7 @@ pipeline {
              steps{
                  script {
                   sh "chmod +x run_container.sh"
-                  sh "./run_container.sh -c ${IMAGE_REPO}."
+                  sh "./run_container.sh -c ${IMAGE_REPO}"
                  }
              }
         }
@@ -48,7 +38,7 @@ pipeline {
              steps{
                  script {
                   sh "chmod +x runTest"
-                  sh "./runTest.sh -i ${IMAGE_REPO} -c ${TAG}."
+                  sh "./runTest.sh -i ${IMAGE_REPO} -c ${TAG}"
                  }
              }
         }
