@@ -11,7 +11,7 @@ LABEL maintainer = "devops4591@gmail.com"
 WORKDIR /opt
 
 # gating version
-ENV GATLING_VERSION 3.8.4
+ENV GATLING_VERSION 2.2.5
 
 # create directory for gatling install
 RUN mkdir -p gatling
