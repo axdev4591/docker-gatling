@@ -11,20 +11,21 @@ LABEL maintainer = "devops4591@gmail.com"
 WORKDIR /opt
 
 # gating version
-ENV GATLING_VERSION 3.2.1
+ENV GATLING_VERSION 3.8.4
 
 # create directory for gatling install
 RUN mkdir -p gatling
 
 # install gatling
-RUN apk add --update wget bash && \
-  mkdir -p /tmp/downloads && \
-  wget -q -O /tmp/downloads/gatling-$GATLING_VERSION.zip \
-  https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcharts/$GATLING_VERSION/gatling-charts-highcharts-$GATLING_VERSION-bundle.zip && \
-  mkdir -p /tmp/archive && cd /tmp/archive && \
-  unzip /tmp/downloads/gatling-$GATLING_VERSION.zip && \
-  mv /tmp/archive/gatling-charts-highcharts-$GATLING_VERSION/* /opt/gatling/ && \
-  rm -rf /tmp/*
+RUN apk add --update wget bash \
+  && mkdir -p /tmp/downloads \
+  && wget -q -O /tmp/downloads/gatling-$GATLING_VERSION.zip \
+  https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcharts/$GATLING_VERSION/gatling-charts-highcharts-$GATLING_VERSION-bundle.zip \
+  && mkdir -p /tmp/archive \ 
+  && cd /tmp/archive \
+  && unzip /tmp/downloads/gatling-$GATLING_VERSION.zip \
+  && mv /tmp/archive/gatling-charts-highcharts-$GATLING_VERSION/* /opt/gatling/ \
+  && rm -rf /tmp/*
 
 # change context to gatling directory
 WORKDIR  /opt/gatling
