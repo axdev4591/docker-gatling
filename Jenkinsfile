@@ -3,8 +3,8 @@ pipeline {
     environment {
         AWS_ACCOUNT_ID="129676970375"
         AWS_DEFAULT_REGION="us-east-1"
-        IMAGE_REPO="gatling"
-        TAG="gatling-runner"
+        IMAGE_REPO="gatling-runner"
+        TAG="latest"
         AWS_REPORT_BUCKET="gatlingbkt"
         PROFILE="EcrRegistryFullAccessEC2"
         REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO}"
@@ -18,7 +18,8 @@ pipeline {
             script {
              //sh "chmod +x build_image.sh"
              //sh "./build_image.sh -i ${IMAGE_REPO} -c ${TAG}."
-              dockerImage = docker.build "${IMAGE_REPO}:${TAG}"
+              //dockerImage = docker.build "${IMAGE_REPO}:${TAG}"
+              docker build -t ${IMAGE_REPO} .
             }
           }
         }
