@@ -46,7 +46,8 @@ function check_image_exist {
 function build_image {
 
     echo -e "\n*** Building the image ***\n"
-    docker build -t ${IMAGE} .
+    #docker build -t ${IMAGE} .
+    docker.build "${IMAGE}:${CONTAINER}"
     echo -e "\n*** Finished building the image ***\n"
 
 }
