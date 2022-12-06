@@ -31,9 +31,6 @@ while [ $# -gt 0 ]; do
     esac
 done
 
-echo "image:1 "
-echo $IMAGE
-echo "image:2 "
 function check_image_exist {
     echo -e "\n*** Checking if docker image exists... ***\n"
 
@@ -48,27 +45,10 @@ function check_image_exist {
 
 function build_image {
 
-    echo -e "\n*** Building the image ***\n"
+    echo -e "\n*** Building gatling image ***\n"
     docker build -t $IMAGE .
-    echo -e "\n*** Finished building the image: ${IMAGE} ***\n"
+    echo -e "\n*** Finished building gatling image: ${IMAGE} ***\n"
 
 }
-    steps{
-            script {
-             //sh "chmod +x build_image.sh"
-             //sh "./build_image.sh -i ${IMAGE_REPO} -c ${TAG}."
-              //dockerImage = docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"
-              dockerImage = docker.build "${IMAGE_REPO}:${TAG}"
-             /* echo -e "\n*** Checking if docker image exists... ***\n"
 
-              if (docker images | grep -w ${IMAGE}) {
-                    echo 'Image already exists. We can just run container'
-                } else {                
-                    echo -e "\n*** Building the image ***\n"
-                    dockerImage = docker.build "${IMAGE_REPO}:${TAG}"
-                    echo -e "\n*** Finished building the image: ${IMAGE} ***\n"
-                }
-            }*/
-          }
-        }
 check_image_exist

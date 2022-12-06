@@ -44,8 +44,7 @@ function delete_old_reports {
 echo -e "\n*** Running gatling tests in container ***\n"
 function run_gatling_test {
 
-  docker exec ${CONTAINER} /opt/gatling/bin/gatling.sh /opt/gatling/bin/gatling.sh -sf /opt/gatling/user-files/simulations/ -s computerdatabase
-  .BasicSimulation -rf /opt/gatling/results/
+  docker exec ${CONTAINER} /opt/gatling/bin/gatling.sh -sf /opt/gatling/user-files/simulations/ -s computerdatabase.ComputerDbTest -rf /opt/gatling/results/
 
 }
 
@@ -63,9 +62,9 @@ function stop_container {
 
 }
 
+#docker exec gat  /opt/gatling/bin/gatling.sh /opt/gatling/bin/gatling.sh -sf /opt/gatling/user-files/simulations/ -s computerdatabase.BasicSimulation -rf /opt/gatling/results/
 
-
-delete_old_reports
+#delete_old_reports
 run_gatling_test
-copy_gatling_reports_to_workspace
-stop_container
+#copy_gatling_reports_to_workspace
+#stop_container

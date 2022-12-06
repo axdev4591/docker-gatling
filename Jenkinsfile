@@ -3,8 +3,8 @@ pipeline {
     environment {
         AWS_ACCOUNT_ID="129676970375"
         AWS_DEFAULT_REGION="us-east-1"
-        IMAGE_REPO="gatling-runner"
-        TAG="latest"
+        IMAGE_REPO="gatling"
+        CONTAINER="gatling-container"
         AWS_REPORT_BUCKET="gatlingbkt"
         PROFILE="EcrRegistryFullAccessEC2"
         REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO}"
@@ -16,10 +16,10 @@ pipeline {
         stage('Buil Docker Image') {
           steps{
             script {
-             //sh "chmod +x build_image.sh"
-             //sh "./build_image.sh -i ${IMAGE_REPO} -c ${TAG}."
+             sh "chmod +x build_image.sh"
+             sh "./build_image.sh -i ${IMAGE_REPO} -c ${CONTAINER}."
               //dockerImage = docker.build "${IMAGE_REPO}:${TAG}"
-              sh "docker build -t ${IMAGE_REPO} ."
+              //sh "docker build -t ${IMAGE_REPO} ."
             }
           }
         }
@@ -29,7 +29,7 @@ pipeline {
              steps{
                  script {
                   sh "chmod +x run_container.sh"
-                  sh "./run_container.sh -c ${IMAGE_REPO}"
+                  sh "./run_container.sh -c ${CONTAINER} -i ${IMAGE_REPO}"
                  }
              }
         }
@@ -39,7 +39,7 @@ pipeline {
              steps{
                  script {
                   sh "chmod +x runTest"
-                  sh "./runTest.sh -i ${IMAGE_REPO} -c ${TAG}"
+                  sh "./runTest.sh -c ${CONTAINER}"
                  }
              }
         }
@@ -62,6 +62,16 @@ pipeline {
                     }
                 }
          }*/
+         /*docker run -t --rm -v /var/lib/jenkins/workspace/Gatling-runner/conf:/opt/gatling/conf \
+  -v /var/lib/jenkins/workspace/Gatling-runner/user-files:/opt/gatling/user-files \
+  -v /var/lib/jenkins/workspace/Gatling-runner/results:/opt/gatling/results \
+  --name gat gatling
+  
+  
+  docker run -t --rm -v /home/axdev/workspace/Gatling-runner/conf:/opt/gatling/conf \
+  -v /home/axdev/workspace/Gatling-runner/user-files:/opt/gatling/user-files \
+  -v /home/axdev/workspace/Gatling-runner/results:/opt/gatling/results \
+  --name gat gatling */
 
     }
 
